@@ -19,7 +19,7 @@ package com.innogames.junit5.scenariobuilder;
  * AccountEntity entity = accountRef.get();
  * </pre>
  */
-public class EntityRefHolder<Given, Entity> {
+public abstract class EntityRefHolder<Given, Entity> {
 
 	private Ref<Entity> entityRef = new Ref<>();
 
