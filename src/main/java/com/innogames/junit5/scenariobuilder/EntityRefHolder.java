@@ -8,10 +8,10 @@ package com.innogames.junit5.scenariobuilder;
  *
  * Example:
  * <pre>
- * var accountRef = new Ref&lt;AccountEntity>();
+ * var accountRef = new Ref&lt;AccountEntity&gt;();
  *
- * scenarioBuilder.build(scenario -> scenario
- *     .withAccount(account -> account
+ * scenarioBuilder.build(scenario -&gt; scenario
+ *     .withAccount(account -&gt; account
  *         .ref(accountRef)
  *     )
  * );

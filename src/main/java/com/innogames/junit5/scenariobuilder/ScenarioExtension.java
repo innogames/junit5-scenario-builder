@@ -19,10 +19,10 @@ import java.util.Optional;
  *
  * <pre>
  *  &#64;Component
- *  public class AppScenarioExtension extends ScenarioExtension&lt;GivenAppScenario> {
+ *  public class AppScenarioExtension extends ScenarioExtension&lt;GivenAppScenario&gt; {
  *
  *      &#64;Override
- *      protected Collection&lt;ScenarioBuilderPart&lt;GivenAppScenario>> getBuilderParts(ExtensionContext extensionContext) {
+ *      protected Collection&lt;ScenarioBuilderPart&lt;GivenAppScenario&gt;&gt; getBuilderParts(ExtensionContext extensionContext) {
  *          // If you use Spring Framework and your builder parts are Spring Beans, you can load them here via
  *          // `SpringExtension.getApplicationContext(extensionContext).getBeansOfType(ScenarioBuilderPart.class)`
  *
@@ -46,7 +46,7 @@ import java.util.Optional;
  *
  * <pre>
  *  &#64;Test
- *  public void someTest(ScenarioBuilder&lt;GivenAppScenario> scenarioBuilder) {
+ *  public void someTest(ScenarioBuilder&lt;GivenAppScenario&gt; scenarioBuilder) {
  *      scenarioBuilder.build(...);
  *  }
  * </pre>
@@ -60,12 +60,18 @@ public abstract class ScenarioExtension<G extends GivenScenario> implements Befo
 	/**
 	 * Returns all builder parts of the scenario builder.
 	 * See {@link ScenarioBuilderPart} for more information.
+	 *
+	 * @param extensionContext Junit execution context for the current test
+	 * @return All scenario builder parts
 	 */
 	protected abstract Collection<ScenarioBuilderPart<G>> getBuilderParts(ExtensionContext extensionContext);
 
 	/**
 	 * Creates a new instance of a {@link GivenScenario}.
 	 * See description of {@link GivenScenario} for more information.
+	 *
+	 * @param extensionContext Junit execution context for the current test
+	 * @return New instance of a {@link GivenScenario}
 	 */
 	protected abstract G createGivenScenario(ExtensionContext extensionContext);
 
@@ -79,12 +85,12 @@ public abstract class ScenarioExtension<G extends GivenScenario> implements Befo
 	 *
 	 * <pre>
 	 *  &#64;Test
-	 *  public void someTest(ScenarioBuilder&lt;GivenAppScenario> scenarioBuilder) {
+	 *  public void someTest(ScenarioBuilder&lt;GivenAppScenario&gt; scenarioBuilder) {
 	 *      scenarioBuilder.build(...);
 	 *  }
 	 * </pre>
 	 *
-	 * you can create a class AppScenario that extends ScenarioBuilder&lt;GivenAppScenario> to write tests like this:
+	 * you can create a class AppScenario that extends ScenarioBuilder&lt;GivenAppScenario&gt; to write tests like this:
 	 *
 	 * <pre>
 	 *  &#64;Test
@@ -92,6 +98,9 @@ public abstract class ScenarioExtension<G extends GivenScenario> implements Befo
 	 *      appScenario.build(...);
 	 *  }
 	 * </pre>
+	 *
+	 * @param extensionContext Junit execution context for the current test
+	 * @return New {@link ScenarioBuilder} instance
 	 */
 	protected ScenarioBuilder<G> createScenarioBuilder(ExtensionContext extensionContext) {
 		return new ScenarioBuilder<>(extensionContext, this::createGivenScenario, getBuilderParts(extensionContext));

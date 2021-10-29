@@ -8,7 +8,7 @@ package com.innogames.junit5.scenariobuilder;
  * So, instead of this:
  * <pre>
  *  &#64;Test
- *  public void someTest(ScenarioBuilder&lt;GivenAppScenario> scenarioBuilder) {
+ *  public void someTest(ScenarioBuilder&lt;GivenAppScenario&gt; scenarioBuilder) {
  *      scenarioBuilder.build(...);
  *  }
  * </pre>
@@ -23,16 +23,16 @@ package com.innogames.junit5.scenariobuilder;
  *
  * With a base test class that looks like this:
  * <pre>
- * class BaseTest implements ScenarioAware&lt;GivenAppScenario> {
+ * class BaseTest implements ScenarioAware&lt;GivenAppScenario&gt; {
  *
- *     private ScenarioBuilder&lt;GivenAppScenario> scenarioBuilder;
+ *     private ScenarioBuilder&lt;GivenAppScenario&gt; scenarioBuilder;
  *
  *     &#64;Override
- *     public void setScenarioBuilder(ScenarioBuilder&lt;GivenAppScenario> scenarioBuilder) {
+ *     public void setScenarioBuilder(ScenarioBuilder&lt;GivenAppScenario&gt; scenarioBuilder) {
  *         this.scenarioBuilder = scenarioBuilder;
  *     }
  *
- *     protected void buildScenario(Consumer&lt;GivenAppScenario> scenarioConsumer) {
+ *     protected void buildScenario(Consumer&lt;GivenAppScenario&gt; scenarioConsumer) {
  *         scenarioBuilder.build(scenarioConsumer);
  *     }
  * }
