@@ -2,7 +2,7 @@ package com.innogames.junit5.scenariobuilder;
 
 /**
  * Classes that implement this interface are responsible for building one part
- * of the whole test scenario.
+ * of the test scenario.
  */
 public interface ScenarioBuilderPart<G extends GivenScenario> {
 

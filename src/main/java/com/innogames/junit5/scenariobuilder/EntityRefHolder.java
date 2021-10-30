@@ -1,22 +1,25 @@
 package com.innogames.junit5.scenariobuilder;
 
 /**
+ * Holds a reference of the related entity.
+ *
+ * <p>
  * Classes inside a {@link GivenScenario} can extend this class to be able to hold the
  * related entity that was created by the scenario builder in the background.
- * You can then access the entity later in the test or in other scenario builder parts.
- * <p>
+ * You can then access the entity later in the test or in another {@link ScenarioBuilderPart}.
+ * </p>
  *
  * Example:
  * <pre>
- * var accountRef = new Ref&lt;AccountEntity&gt;();
+ * var userRef = new Ref&lt;UserEntity&gt;();
  *
  * scenarioBuilder.build(scenario -&gt; scenario
- *     .withAccount(account -&gt; account
- *         .ref(accountRef)
+ *     .withUser(user -&gt; user
+ *         .ref(userRef)
  *     )
  * );
  *
- * AccountEntity entity = accountRef.get();
+ * UserEntity entity = userRef.get();
  * </pre>
  */
 public abstract class EntityRefHolder<Given, Entity> {

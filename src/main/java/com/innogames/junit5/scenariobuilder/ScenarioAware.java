@@ -3,8 +3,8 @@ package com.innogames.junit5.scenariobuilder;
 /**
  * You can add this interface to a base test class to avoid passing a ScenarioBuilder
  * to each test method.
- * <p>
  *
+ * <p>
  * So, instead of this:
  * <pre>
  *  &#64;Test
@@ -21,7 +21,7 @@ package com.innogames.junit5.scenariobuilder;
  *  }
  * </pre>
  *
- * With a base test class that looks like this:
+ * This is how the base test class could look like:
  * <pre>
  * class BaseTest implements ScenarioAware&lt;GivenAppScenario&gt; {
  *

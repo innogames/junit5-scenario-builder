@@ -10,7 +10,7 @@ import java.util.function.Function;
 /**
  * Builds the test scenario based on the passed {@link GivenScenario} object.
  * This class calls all related {@link ScenarioBuilderPart}s in the correct order.
- * Note that a new ScenarioBuilder instance is created for each test.
+ * Note that a new ScenarioBuilder instance is created per test execution.
  */
 public class ScenarioBuilder<G extends GivenScenario> {
 

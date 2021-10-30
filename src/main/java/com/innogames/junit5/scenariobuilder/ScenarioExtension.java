@@ -12,7 +12,8 @@ import java.util.Collection;
 import java.util.Optional;
 
 /**
- * Junit 5 Extension that needs to be extended to add the {@link ScenarioBuilder} to your test.
+ * Base Junit 5 Extension that needs to be extended to add the Scenario Builder functionality to your tests.
+ *
  * <p>
  * Note that you should not use this class directly in the @ExtendWith annotation. Instead, you
  * have to extend it to implement the necessary factory methods. For example:
@@ -58,7 +59,7 @@ public abstract class ScenarioExtension<G extends GivenScenario> implements Befo
 	private static final Namespace NAMESPACE = Namespace.create(ScenarioExtension.class);
 
 	/**
-	 * Returns all builder parts of the scenario builder.
+	 * Returns all builder parts for the scenario builder.
 	 * See {@link ScenarioBuilderPart} for more information.
 	 *
 	 * @param extensionContext Junit execution context for the current test

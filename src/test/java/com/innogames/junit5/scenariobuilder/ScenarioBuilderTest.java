@@ -1,8 +1,8 @@
 package com.innogames.junit5.scenariobuilder;
 
-import com.innogames.junit5.scenariobuilder.example.GivenAppScenario;
-import com.innogames.junit5.scenariobuilder.example.account.Account;
-import com.innogames.junit5.scenariobuilder.example.account.AccountBuilder;
+import com.innogames.junit5.scenariobuilder.examples.gettingstarted.domain.UserEntity;
+import com.innogames.junit5.scenariobuilder.examples.gettingstarted.scenario.GivenAppScenario;
+import com.innogames.junit5.scenariobuilder.examples.gettingstarted.scenario.UserBuilderPart;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ class ScenarioBuilderTest {
 			extensionContext,
 			context -> new GivenAppScenario(),
 			List.of(
-				new CollectAccountNames(texts),
-				new AccountBuilder(),
+				new CollectUsernames(texts),
+				new UserBuilderPart(),
 				new CleanupTestPart(texts)
 			)
 		);
@@ -38,23 +38,23 @@ class ScenarioBuilderTest {
 
 	@Test
 	public void test_build() {
-		var aliceRef = new Ref<Account>();
-		var bobRef = new Ref<Account>();
+		var aliceRef = new Ref<UserEntity>();
+		var bobRef = new Ref<UserEntity>();
 
 		scenarioBuilder.build(scenario -> scenario
-			.withAccount(account -> account
+			.withUser(user -> user
 				.ref(aliceRef)
-				.withName("Alice")
+				.withUsername("Alice")
 			)
-			.withAccount(account -> account
+			.withUser(user -> user
 				.ref(bobRef)
-				.withName("Bob")
+				.withUsername("Bob")
 			)
 		);
 
 		// assert that refs are filled correctly
-		assertEquals("Alice", aliceRef.get().getName());
-		assertEquals("Bob", bobRef.get().getName());
+		assertEquals("Alice", aliceRef.get().getUsername());
+		assertEquals("Bob", bobRef.get().getUsername());
 
 		// assert that builder parts were called
 		assertEquals(3, texts.size());
@@ -81,18 +81,18 @@ class ScenarioBuilderTest {
 		// assert that cleanup methods in builder parts were called in correct order
 		assertEquals(2, texts.size());
 		assertEquals("CleanupTestPart.cleanup was called", texts.get(0));
-		assertEquals("cleanup by CollectAccountNames", texts.get(1));
+		assertEquals("cleanup by CollectUsernames", texts.get(1));
 	}
 
 	/**
-	 * Builder part just for testing purposes. It uses the Account entities that were created
-	 * by the AccountBuilder and adds their names to the passed texts array.
+	 * Builder part just for testing purposes. It uses the user entities that were created
+	 * by the UserBuilderPart and adds their names to the passed texts array.
 	 */
-	private static class CollectAccountNames implements ScenarioBuilderPart<GivenAppScenario> {
+	private static class CollectUsernames implements ScenarioBuilderPart<GivenAppScenario> {
 
 		private final List<String> texts;
 
-		private CollectAccountNames(List<String> texts) {
+		private CollectUsernames(List<String> texts) {
 			this.texts = texts;
 		}
 
@@ -103,15 +103,13 @@ class ScenarioBuilderTest {
 
 		@Override
 		public void build(GivenAppScenario givenScenario) {
-			givenScenario.getAccounts().forEach(givenAccount -> {
-				Account account = givenAccount.getEntity();
-				texts.add(account.getName());
-			});
+			givenScenario.getUsers().forEach(givenUser ->
+				texts.add(givenUser.getEntity().getUsername()));
 		}
 
 		@Override
 		public void cleanup(GivenAppScenario givenScenario) {
-			texts.add("cleanup by CollectAccountNames");
+			texts.add("cleanup by CollectUsernames");
 		}
 
 	}

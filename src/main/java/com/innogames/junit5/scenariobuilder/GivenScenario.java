@@ -1,32 +1,32 @@
 package com.innogames.junit5.scenariobuilder;
 
 /**
- * <p>
- * Base interface for a custom test scenario. Derived classes should hold
- * the configuration of a whole test scenario.
- * </p>
+ * Base interface for a configurable test scenario.
  *
  * <p>
- * All data in here is specific to your application. It is recommended to create fluent methods
- * to set the data in tests. A GivenScenario can contain sub-objects which should also be prefixed
- * with "Given" to make the intention clear. As an example, if your application contains accounts,
- * create a class called GivenAccount that holds configuration for one account.
- * Here's an example how it could look like:
+ * Derived classed should contain information about the scenario you want to build inside a test.
+ * It is recommended to create a fluent builder-like API which makes your scenario configuration
+ * readable. A GivenScenario can contain sub-objects whose class names should be prefixed with
+ * "Given" to make the intention clear.
+ * </p>
+ * <p>
+ * As an example, if your application contains users, create a class called GivenUser that holds
+ * configuration for one user. Here's an example how it could look like:
  * </p>
  *
  * <pre>
  *  public class GivenAppScenario implements GivenScenario {
  *
- *      private final List&lt;GivenAccount&gt; accounts = new ArrayList&lt;&gt;();
+ *      private final List&lt;GivenUser&gt; users = new ArrayList&lt;&gt;();
  *
- *      public List&lt;GivenAccount&gt; getAccounts() {
- * 	        return accounts;
+ *      public List&lt;GivenUser&gt; getUsers() {
+ * 	        return users;
  *      }
  *
- * 	    public GivenAppScenario withAccount(Consumer&lt;GivenAccount&gt; accountConsumer) {
- * 	        GivenAccount givenAccount = new GivenAccount();
- * 	        accountConsumer.accept(givenAccount);
- * 	        accounts.add(givenAccount);
+ * 	    public GivenAppScenario withUser(Consumer&lt;GivenUser&gt; userConsumer) {
+ * 	        GivenUser givenUser = new GivenUser();
+ * 	        userConsumer.accept(givenUser);
+ * 	        users.add(givenUser);
  * 	        return this;
  *      }
  *

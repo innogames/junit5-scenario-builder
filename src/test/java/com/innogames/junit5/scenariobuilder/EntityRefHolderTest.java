@@ -1,7 +1,7 @@
 package com.innogames.junit5.scenariobuilder;
 
-import com.innogames.junit5.scenariobuilder.example.account.Account;
-import com.innogames.junit5.scenariobuilder.example.account.GivenAccount;
+import com.innogames.junit5.scenariobuilder.examples.gettingstarted.domain.UserEntity;
+import com.innogames.junit5.scenariobuilder.examples.gettingstarted.scenario.GivenUser;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,34 +14,34 @@ class EntityRefHolderTest {
 
 	@Test
 	public void test_getEntity_throws_exception_if_not_set() {
-		var givenAccount = new GivenAccount();
-		assertThrows(ScenarioException.class, givenAccount::getEntity);
+		var givenUser = new GivenUser();
+		assertThrows(ScenarioException.class, givenUser::getEntity);
 	}
 
 	@Test
 	public void test_getEntity_from_entityRefHolder() {
-		var givenAccount = new GivenAccount();
+		var givenUser = new GivenUser();
 
-		var account = new Account();
-		account.setId(UUID.randomUUID());
-		account.setName("Christian");
-		givenAccount.setEntity(account);
+		var user = new UserEntity();
+		user.setId(UUID.randomUUID());
+		user.setUsername("Christian");
+		givenUser.setEntity(user);
 
-		assertSame(account, givenAccount.getEntity());
+		assertSame(user, givenUser.getEntity());
 	}
 
 	@Test
 	public void test_get_entity_from_ref() {
-		var accountRef = new Ref<Account>();
-		var givenAccount = new GivenAccount();
-		givenAccount.ref(accountRef);
+		var userRef = new Ref<UserEntity>();
+		var givenUser = new GivenUser();
+		givenUser.ref(userRef);
 
-		var account = new Account();
-		account.setId(UUID.randomUUID());
-		account.setName("Christian");
-		givenAccount.setEntity(account);
+		var user = new UserEntity();
+		user.setId(UUID.randomUUID());
+		user.setUsername("Christian");
+		givenUser.setEntity(user);
 
-		assertSame(account, accountRef.get());
+		assertSame(user, userRef.get());
 	}
 
 }
