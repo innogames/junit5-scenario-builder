@@ -1,10 +1,43 @@
+import java.util.regex.Pattern
+import org.gradle.util.internal.VersionNumber
+
 plugins {
 	id 'java-library'
 	id 'maven-publish'
+	id 'me.qoomon.git-versioning' version '5.1.1'
 }
 
 group 'com.innogames'
-version '1.0-SNAPSHOT'
+version '0.0.0-SNAPSHOT'
+
+def setVersionFromGit() {
+	// Set project version based on git branch or tag using the git-versioning plugin
+	gitVersioning.apply {
+		refs {
+			branch('.+') {
+				describeTagPattern = Pattern.compile('v(?<version>.*)')
+				version = '${describe.tag.version:-0.0.0}-SNAPSHOT'
+			}
+			tag('v(?<version>.*)') {
+				version = '${ref.version}'
+			}
+		}
+	}
+
+	// Use the next minor version if the determined version is a SNAPSHOT version
+	VersionNumber current = VersionNumber.parse(project.version)
+	if (current.qualifier == 'SNAPSHOT') {
+		logger.info('Found SNAPSHOT version. Increase minor version')
+		def newVersion = new VersionNumber(current.major, current.minor + 1, 0, current.qualifier)
+		project.setVersion(newVersion.toString())
+	}
+
+	logger.info("-------------------------------------------")
+	logger.info("Current project version: ${project.version}")
+	logger.info("-------------------------------------------")
+}
+
+setVersionFromGit()
 
 repositories {
 	mavenCentral()
