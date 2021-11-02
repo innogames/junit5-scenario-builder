@@ -13,7 +13,12 @@ group 'com.innogames'
 version '0.0.0-SNAPSHOT'
 
 def setVersionFromGit() {
-	// Set project version based on git branch or tag using the git-versioning plugin
+	// Set project version based on git branch or tag using the git-versioning plugin.
+	// Version can also be explicitly defined. For example:
+	//   gradle -Dgit.ref=$PROVIDED_REF
+	//   gradle -Dgit.branch=$PROVIDED_BRANCH_NAME
+	//   gradle -Dgit.tag=$PROVIDED_TAG_NAME
+	// (See also https://github.com/qoomon/gradle-git-versioning-plugin)
 	gitVersioning.apply {
 		refs {
 			branch('.+') {
@@ -124,5 +129,19 @@ if (hasProperty('signing.keyId')) {
 			useInMemoryPgpKeys(findProperty('signing.keyId'), findProperty('signing.key'), findProperty('signing.password'))
 		}
 		sign publishing.publications.mavenJava
+	}
+}
+
+/**
+ * Updates the version mentioned in the docs. It will use the determined version based on the
+ * current git branch or tag. You can use a specific version via -Dgit.tag=version system prop.
+ * E.g. `gradle -Dgit.tag=v0.1.0 updateDocumentedVersion`
+ */
+tasks.register('updateDocumentedVersion') {
+	doFirst {
+		File docsFile = file('docs/getting-started.md')
+		docsFile.write(docsFile.getText()
+			.replaceAll('<version>[0-9a-zA-Z.-]+</version>', "<version>${project.version}</version>")
+			.replaceAll('(com.innogames:junit5-scenario-builder:)[0-9a-zA-Z.-]+', "\$1${project.version}"))
 	}
 }

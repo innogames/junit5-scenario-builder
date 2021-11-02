@@ -2,17 +2,13 @@
 
 ## 1. Add dependency
 
-> :warning: We are currently in the process of making this library available on Maven Central. Thanks for your patience!
-
-<!--
-
 Using Maven:
 
 ```xml
 <dependency>
     <groupId>com.innogames</groupId>
     <artifactId>junit5-scenario-builder</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -20,10 +16,8 @@ Using Maven:
 Using Gradle:
 
 ```groovy
-testImplementation "com.innogames:junit5-scenario-builder:1.0-SNAPSHOT"
+testImplementation "com.innogames:junit5-scenario-builder:0.1.0"
 ```
-
--->
 
 ## 2. Implement GivenScenario
 
