@@ -123,10 +123,11 @@ nexusPublishing {
 
 if (hasProperty('signing.keyId')) {
 	signing {
-		// Use ascii-armored key when signing.key property is set.
+		// Use ascii-armored key when SIGNING_KEY environment variable is set.
 		// If not, signing.secretKeyRingFile property should be present.
-		if (hasProperty('signing.key')) {
-			useInMemoryPgpKeys(findProperty('signing.keyId'), findProperty('signing.key'), findProperty('signing.password'))
+		def signingKey = System.getenv('SIGNING_KEY')
+		if (signingKey) {
+			useInMemoryPgpKeys(findProperty('signing.keyId'), signingKey, findProperty('signing.password'))
 		}
 		sign publishing.publications.mavenJava
 	}
