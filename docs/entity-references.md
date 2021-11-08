@@ -26,7 +26,7 @@ public void example() {
     // After `scenarioBuilder.build()` was called, the reference
     // object is filled and you can access the UserEntity:
     assertNotNull(userRef.get().getId());
-    assertEquals("Christian", aliceRef.get().getUsername());
+    assertEquals("Christian", userRef.get().getUsername());
 }
 ```
 
