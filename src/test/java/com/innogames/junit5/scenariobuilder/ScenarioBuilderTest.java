@@ -6,8 +6,6 @@ import com.innogames.junit5.scenariobuilder.examples.gettingstarted.scenario.Use
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +21,8 @@ class ScenarioBuilderTest {
 
 	@BeforeEach
 	void setUp() {
-		ExtensionContext extensionContext = Mockito.mock(ExtensionContext.class);
-
 		scenarioBuilder = new ScenarioBuilder<>(
-			extensionContext,
-			context -> new GivenAppScenario(),
+			GivenAppScenario::new,
 			List.of(
 				new CollectUsernames(texts),
 				new UserBuilderPart(),

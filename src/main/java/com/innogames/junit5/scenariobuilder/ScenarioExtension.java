@@ -104,7 +104,7 @@ public abstract class ScenarioExtension<G extends GivenScenario> implements Befo
 	 * @return New {@link ScenarioBuilder} instance
 	 */
 	protected ScenarioBuilder<G> createScenarioBuilder(ExtensionContext extensionContext) {
-		return new ScenarioBuilder<>(extensionContext, this::createGivenScenario, getBuilderParts(extensionContext));
+		return new ScenarioBuilder<>(() -> createGivenScenario(extensionContext), getBuilderParts(extensionContext));
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})

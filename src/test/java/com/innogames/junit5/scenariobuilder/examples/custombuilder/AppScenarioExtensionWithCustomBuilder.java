@@ -31,7 +31,7 @@ public class AppScenarioExtensionWithCustomBuilder extends ScenarioExtension<Giv
 
 	@Override
 	protected ScenarioBuilder<GivenAppScenario> createScenarioBuilder(ExtensionContext extensionContext) {
-		return new AppScenario(extensionContext, this::createGivenScenario, getBuilderParts(extensionContext));
+		return new AppScenario(() -> createGivenScenario(extensionContext), getBuilderParts(extensionContext));
 	}
 
 }

@@ -26,9 +26,9 @@ First, create your scenario builder that extends the original `ScenarioBuilder`:
 ```java
 public class AppScenario extends ScenarioBuilder<GivenAppScenario> {
 
-    public AppScenario(ExtensionContext extensionContext, Function<ExtensionContext, GivenAppScenario> givenScenarioFactory,
+    public AppScenario(GivenScenarioFactory<GivenAppScenario> givenScenarioFactory,
                        Collection<ScenarioBuilderPart<GivenAppScenario>> scenarioBuilderParts) {
-        super(extensionContext, givenScenarioFactory, scenarioBuilderParts);
+        super(givenScenarioFactory, scenarioBuilderParts);
     }
 
 }
@@ -54,7 +54,7 @@ public class AppScenarioExtension extends ScenarioExtension<GivenAppScenario> {
     @Override
     protected ScenarioBuilder<GivenAppScenario> createScenarioBuilder(ExtensionContext extensionContext) {
         // Create an instance of your custom Scenario Builder here
-        return new AppScenario(extensionContext, this::createGivenScenario, getBuilderParts(extensionContext));
+        return new AppScenario(() -> createGivenScenario(extensionContext), getBuilderParts(extensionContext));
     }
 
 }

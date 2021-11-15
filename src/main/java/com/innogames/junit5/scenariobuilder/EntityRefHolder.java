@@ -6,7 +6,8 @@ package com.innogames.junit5.scenariobuilder;
  * <p>
  * Classes inside a {@link GivenScenario} can extend this class to be able to hold the
  * related entity that was created by the scenario builder in the background.
- * You can then access the entity later in the test or in another {@link ScenarioBuilderPart}.
+ * This entity can then be accessed by other {@link ScenarioBuilderPart}s or after the
+ * scenario has been built.
  * </p>
  *
  * Example:

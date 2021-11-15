@@ -1,10 +1,10 @@
 package com.innogames.junit5.scenariobuilder;
 
 /**
- * Base interface for a configurable test scenario.
+ * Base interface for a configurable scenario.
  *
  * <p>
- * Derived classed should contain information about the scenario you want to build inside a test.
+ * Derived classed should contain information about the scenario you want to build.
  * It is recommended to create a fluent builder-like API which makes your scenario configuration
  * readable. A GivenScenario can contain sub-objects whose class names should be prefixed with
  * "Given" to make the intention clear.
