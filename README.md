@@ -36,4 +36,4 @@ public void testLogin() {
 ```
 
 See more examples in the
-[test folder.](./src/test/java/com/innogames/junit5/scenariobuilder/examples)
+[test folder.](./src/test/java/com/innogames/scenariobuilder/examples)

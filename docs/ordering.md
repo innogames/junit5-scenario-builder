@@ -34,10 +34,10 @@ public class UserBuilderPart implements ScenarioBuilderPart<GivenTodoScenario> {
 }
 ```
 
-[TodoExample]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo
+[TodoExample]: ../src/test/java/com/innogames/scenariobuilder/examples/todo
 
-[UserBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/UserBuilderPart.java
+[UserBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/UserBuilderPart.java
 
-[TodoListBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/TodoListBuilderPart.java
+[TodoListBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TodoListBuilderPart.java
 
-[TaskBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/TaskBuilderPart.java
+[TaskBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TaskBuilderPart.java

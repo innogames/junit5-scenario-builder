@@ -235,4 +235,4 @@ To accomplish this:
 - The `UserBuilderPart` must store the entity in the `GivenUser` object after creation.
 
 Read more about it in the [Entity References](./entity-references.md) section or look at the
-[example implementation in the test folder.](../src/test/java/com/innogames/junit5/scenariobuilder/examples/gettingstarted)
+[example implementation in the test folder.](../src/test/java/com/innogames/scenariobuilder/examples/gettingstarted)

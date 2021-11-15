@@ -113,18 +113,18 @@ Here we have 3 builder parts that have to be executed in the correct order:
 Please have a look at the [full implementation of this example here][TodoExample].
 
 
-[RefClass]: ../src/main/java/com/innogames/junit5/scenariobuilder/Ref.java
+[RefClass]: ../src/main/java/com/innogames/scenariobuilder/Ref.java
 
-[EntityRefHolder]: ../src/main/java/com/innogames/junit5/scenariobuilder/EntityRefHolder.java
+[EntityRefHolder]: ../src/main/java/com/innogames/scenariobuilder/EntityRefHolder.java
 
-[GivenUser]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/gettingstarted/scenario/GivenUser.java
+[GivenUser]: ../src/test/java/com/innogames/scenariobuilder/examples/gettingstarted/scenario/GivenUser.java
 
-[UserBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/gettingstarted/scenario/UserBuilderPart.java
+[UserBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/gettingstarted/scenario/UserBuilderPart.java
 
-[TodoExample]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo
+[TodoExample]: ../src/test/java/com/innogames/scenariobuilder/examples/todo
 
-[UserBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/UserBuilderPart.java
+[UserBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/UserBuilderPart.java
 
-[TodoListBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/TodoListBuilderPart.java
+[TodoListBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TodoListBuilderPart.java
 
-[TaskBuilderPart]: ../src/test/java/com/innogames/junit5/scenariobuilder/examples/todo/scenario/builder/TaskBuilderPart.java
+[TaskBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TaskBuilderPart.java
