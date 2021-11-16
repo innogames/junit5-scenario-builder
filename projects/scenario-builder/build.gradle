@@ -1,0 +1,6 @@
+project.description = 'Provides a basic API for building a scenario based on a given scenario configuration'
+
+dependencies {
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}

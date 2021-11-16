@@ -2,15 +2,14 @@ import java.util.regex.Pattern
 import org.gradle.util.internal.VersionNumber
 
 plugins {
-	id 'java-library'
-	id 'me.qoomon.git-versioning' version '5.1.1'
-	id 'maven-publish'
-	id 'signing'
-	id 'io.github.gradle-nexus.publish-plugin' version '1.1.0'
+	id 'me.qoomon.git-versioning' version "$gitVersioningPluginVersion"
+	id 'io.github.gradle-nexus.publish-plugin' version "$gradleNexusPublishPluginVersion"
 }
 
 group 'com.innogames'
 version '0.0.0-SNAPSHOT'
+def javaVersion = 11
+def gitRepository = 'innogames/junit5-scenario-builder'
 
 def setVersionFromGit() {
 	// Set project version based on git branch or tag using the git-versioning plugin.
@@ -46,65 +45,89 @@ def setVersionFromGit() {
 
 setVersionFromGit()
 
-repositories {
-	mavenCentral()
+allprojects {
+	repositories {
+		mavenCentral()
+	}
 }
 
-dependencies {
-	def junitVersion = '5.8.1'
-
-	compileOnly "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-
-	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
-	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+def javaProjects = subprojects.findAll {
+	return it.name != 'projects'
 }
 
-test {
-	useJUnitPlatform()
-}
+configure(javaProjects) { project ->
+	group = rootProject.group
+	version = rootProject.version
 
-java {
-	withJavadocJar()
-	withSourcesJar()
-}
+	apply plugin: 'java-library'
+	apply plugin: 'maven-publish'
+	apply plugin: 'signing'
 
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(javaVersion)
+		}
+		withJavadocJar()
+		withSourcesJar()
+	}
 
-			pom {
-				name = project.name
-				description = 'Junit5 extension that introduces a Scenario Builder to your tests'
-				url = 'https://github.com/innogames/junit5-scenario-builder'
-				licenses {
-					license {
-						name = 'MIT License'
-						url = 'https://opensource.org/licenses/MIT'
+	test {
+		useJUnitPlatform()
+	}
+
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				from components.java
+
+				afterEvaluate {
+					pom {
+						name = project.name
+						description = project.description
+						url = "https://github.com/${gitRepository}"
+						licenses {
+							license {
+								name = 'MIT License'
+								url = 'https://opensource.org/licenses/MIT'
+							}
+						}
+						developers {
+							developer {
+								name = 'Christian Blos'
+								email = 'christian.blos@innogames.com'
+								organization = 'InnoGames GmbH'
+								organizationUrl = 'https://www.innogames.com/'
+							}
+						}
+						scm {
+							connection = "scm:git:git://github.com/${gitRepository}.git"
+							developerConnection = "scm:git:ssh://github.com:${gitRepository}.git"
+							url = "https://github.com/${gitRepository}"
+						}
 					}
-				}
-				developers {
-					developer {
-						name = 'Christian Blos'
-						email = 'christian.blos@innogames.com'
-						organization = 'InnoGames GmbH'
-						organizationUrl = 'https://www.innogames.com/'
-					}
-				}
-				scm {
-					connection = 'scm:git:git://github.com/innogames/junit5-scenario-builder.git'
-					developerConnection = 'scm:git:ssh://github.com:innogames/junit5-scenario-builder.git'
-					url = 'https://github.com/innogames/junit5-scenario-builder'
 				}
 			}
 		}
-	}
 
-	repositories {
-		maven {
-			def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
-			def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
-			url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+		repositories {
+			maven {
+				def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
+				def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
+				url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+			}
+		}
+
+		def signingKeyId = findProperty('signing.keyId')
+		if (signingKeyId) {
+			signing {
+				// Use ascii-armored key when SIGNING_KEY environment variable is set.
+				// If not, signing.secretKeyRingFile property should be present.
+				def signingKey = System.getenv('SIGNING_KEY')
+				if (signingKey) {
+					useInMemoryPgpKeys(signingKeyId, signingKey, findProperty('signing.password'))
+				}
+				sign publishing.publications.mavenJava
+			}
 		}
 	}
 }
@@ -117,18 +140,6 @@ nexusPublishing {
 			username = findProperty('ossrhUsername')
 			password = findProperty('ossrhPassword')
 		}
-	}
-}
-
-if (hasProperty('signing.keyId')) {
-	signing {
-		// Use ascii-armored key when SIGNING_KEY environment variable is set.
-		// If not, signing.secretKeyRingFile property should be present.
-		def signingKey = System.getenv('SIGNING_KEY')
-		if (signingKey) {
-			useInMemoryPgpKeys(findProperty('signing.keyId'), signingKey, findProperty('signing.password'))
-		}
-		sign publishing.publications.mavenJava
 	}
 }
 

@@ -113,18 +113,18 @@ Here we have 3 builder parts that have to be executed in the correct order:
 Please have a look at the [full implementation of this example here][TodoExample].
 
 
-[RefClass]: ../src/main/java/com/innogames/scenariobuilder/Ref.java
+[RefClass]: ../projects/scenario-builder/src/main/java/com/innogames/scenariobuilder/Ref.java
 
-[EntityRefHolder]: ../src/main/java/com/innogames/scenariobuilder/EntityRefHolder.java
+[EntityRefHolder]: ../projects/scenario-builder/src/main/java/com/innogames/scenariobuilder/EntityRefHolder.java
 
-[GivenUser]: ../src/test/java/com/innogames/scenariobuilder/examples/gettingstarted/scenario/GivenUser.java
+[GivenUser]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/gettingstarted/scenario/GivenUser.java
 
-[UserBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/gettingstarted/scenario/UserBuilderPart.java
+[UserBuilderPart]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/gettingstarted/scenario/UserBuilderPart.java
 
-[TodoExample]: ../src/test/java/com/innogames/scenariobuilder/examples/todo
+[TodoExample]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/todo
 
-[UserBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/UserBuilderPart.java
+[UserBuilderPart]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/todo/scenario/builder/UserBuilderPart.java
 
-[TodoListBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TodoListBuilderPart.java
+[TodoListBuilderPart]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/todo/scenario/builder/TodoListBuilderPart.java
 
-[TaskBuilderPart]: ../src/test/java/com/innogames/scenariobuilder/examples/todo/scenario/builder/TaskBuilderPart.java
+[TaskBuilderPart]: ../projects/junit5-scenario-builder/src/test/java/com/innogames/scenariobuilder/junit5/examples/todo/scenario/builder/TaskBuilderPart.java

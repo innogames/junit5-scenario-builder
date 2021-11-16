@@ -1,0 +1,10 @@
+project.description = 'Junit5 extension that introduces a Scenario Builder to your tests'
+
+dependencies {
+	api project(':projects:scenario-builder')
+
+	compileOnly "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
