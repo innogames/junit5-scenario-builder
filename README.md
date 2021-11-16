@@ -1,3 +1,5 @@
+![release](https://badgen.net/github/release/innogames/junit5-scenario-builder/stable?color=cyan) ![license](https://badgen.net/github/license/innogames/junit5-scenario-builder) ![publish](https://github.com/innogames/junit5-scenario-builder/actions/workflows/publish.yml/badge.svg)
+
 # Scenario Builder for Integration Tests
 
 A Junit 5 extension that introduces a "Scenario Builder" to your tests giving you the following benefits:
