@@ -8,4 +8,11 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class Ref<T> extends AtomicReference<T> {
 
+	public Ref(T initialValue) {
+		super(initialValue);
+	}
+
+	public Ref() {
+	}
+
 }
