@@ -8,7 +8,7 @@ Using Maven:
 <dependency>
     <groupId>com.innogames</groupId>
     <artifactId>junit5-scenario-builder</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -16,7 +16,7 @@ Using Maven:
 Using Gradle:
 
 ```groovy
-testImplementation "com.innogames:junit5-scenario-builder:0.4.0"
+testImplementation "com.innogames:junit5-scenario-builder:0.4.1"
 ```
 
 ## 2. Implement GivenScenario
