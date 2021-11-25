@@ -19,6 +19,9 @@ Using Gradle:
 testImplementation "com.innogames:junit5-scenario-builder:1.0.0"
 ```
 
+> If you only want to use the Scenario Builder without the JUnit extension, you can use
+> `com.innogames:scenario-builder` instead.
+
 ## 2. Implement GivenScenario
 
 The `GivenScenario` holds all information about the scenario that you want to build. The idea is that you just have to
