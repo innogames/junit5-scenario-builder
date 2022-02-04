@@ -8,7 +8,7 @@ Using Maven:
 <dependency>
     <groupId>com.innogames</groupId>
     <artifactId>junit5-scenario-builder</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -16,7 +16,7 @@ Using Maven:
 Using Gradle:
 
 ```groovy
-testImplementation "com.innogames:junit5-scenario-builder:1.0.0"
+testImplementation "com.innogames:junit5-scenario-builder:1.0.1"
 ```
 
 > If you only want to use the Scenario Builder without the JUnit extension, you can use
