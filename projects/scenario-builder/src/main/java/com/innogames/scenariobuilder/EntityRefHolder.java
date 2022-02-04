@@ -25,7 +25,7 @@ package com.innogames.scenariobuilder;
  */
 public abstract class EntityRefHolder<Given, Entity> {
 
-	private Ref<Entity> entityRef = new Ref<>();
+	protected Ref<Entity> entityRef = new Ref<>();
 
 	@SuppressWarnings("unchecked")
 	public Given ref(Ref<Entity> entityRef) {
