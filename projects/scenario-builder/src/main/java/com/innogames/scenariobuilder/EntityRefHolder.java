@@ -29,6 +29,9 @@ public abstract class EntityRefHolder<Given, Entity> {
 
 	@SuppressWarnings("unchecked")
 	public Given ref(Ref<Entity> entityRef) {
+		if (this.entityRef.get() != null) {
+			entityRef.set(this.entityRef.get());
+		}
 		this.entityRef = entityRef;
 		return (Given) this;
 	}

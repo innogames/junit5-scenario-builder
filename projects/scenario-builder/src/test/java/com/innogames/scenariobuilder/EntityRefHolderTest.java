@@ -44,4 +44,20 @@ class EntityRefHolderTest {
 		assertSame(user, userRef.get());
 	}
 
+	@Test
+	public void test_ref_reuses_entity() {
+		var oldUserRef = new Ref<UserEntity>();
+		var givenUser = new GivenUser();
+		givenUser.ref(oldUserRef);
+
+		var user = new UserEntity();
+		user.setId(UUID.randomUUID());
+		user.setUsername("Christian");
+		givenUser.setEntity(user);
+
+		var newUserRef = new Ref<UserEntity>();
+		givenUser.ref(newUserRef);
+		assertSame(user, newUserRef.get());
+	}
+
 }
