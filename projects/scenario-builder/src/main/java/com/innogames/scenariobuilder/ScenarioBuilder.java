@@ -23,18 +23,25 @@ public class ScenarioBuilder<G extends GivenScenario> {
 	public void build(Consumer<G> scenarioConsumer) {
 		givenScenario = givenScenarioFactory.create();
 		scenarioConsumer.accept(givenScenario);
+		buildParts(givenScenario, builderParts);
+	}
 
+	public void cleanup() {
+		if (givenScenario != null) {
+			cleanupParts(givenScenario, builderParts);
+		}
+	}
+
+	protected void buildParts(G givenScenario, Collection<ScenarioBuilderPart<G>> builderParts) {
 		builderParts.stream()
 			.sorted(Comparator.comparingInt(ScenarioBuilderPart::getOrder))
 			.forEach(builderPart -> builderPart.build(givenScenario));
 	}
 
-	public void cleanup() {
-		if (givenScenario != null) {
-			builderParts.stream()
-				.sorted((a, b) -> b.getOrder() - a.getOrder())
-				.forEach(builderPart -> builderPart.cleanup(givenScenario));
-		}
+	protected void cleanupParts(G givenScenario, Collection<ScenarioBuilderPart<G>> builderParts) {
+		builderParts.stream()
+			.sorted((a, b) -> b.getOrder() - a.getOrder())
+			.forEach(builderPart -> builderPart.cleanup(givenScenario));
 	}
 
 }
